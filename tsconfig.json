@@ -1,13 +1,19 @@
 {
     "compilerOptions": {
-      "module": "system",
-      "noImplicitAny": true,
-      "removeComments": true,
-      "preserveConstEnums": true,
-      "outDir": "./dist",
+      "baseUrl": "./",
+      "outDir": "./public",
       "sourceMap": true,
+      "declaration": false,
+      "downlevelIteration": true,
+      "experimentalDecorators": true,
+      "module": "esnext",
       "moduleResolution": "node",
-      "target": "ES6",
+      "importHelpers": true,
+      "target": "es2015",
+      "lib": [
+        "es2018",
+        "dom"
+      ]
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "**/*.spec.ts"]

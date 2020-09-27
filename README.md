@@ -28,7 +28,6 @@ The extension should reload automatically if the files have been changed locally
 npm install
 ```
 
-### Compiles and hot-reloads for development
 ```
 npm run serve
 ```

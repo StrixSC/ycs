@@ -1,4 +1,10 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import VideoManager from './video-manager';
 
-console.log(JSON.stringify(process.env));
+chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
+    const videoId = VideoManager.filterVideoId(tabs[0].url);
+    const comments = await VideoManager.getCommentsByVideoId(videoId);
+    if(comments) {
+        console.log(comments);
+    }
+});
+
