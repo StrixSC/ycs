@@ -12,7 +12,7 @@ export default class VideoManager {
   };
 
   public static getCommentsByVideoId = async (videoId: string): Promise<any[]> => {
-    const apiURL = `${VideoManager.baseApiUrl}&${VideoManager.maxResultsQuery}&${VideoManager.orderQuery}&videoId=${videoId}&key=#`;
+    const apiURL = `${VideoManager.baseApiUrl}&${VideoManager.maxResultsQuery}&${VideoManager.orderQuery}&videoId=${videoId}&key=AIzaSyC31uEVqqftifzABG6EqBbOoIczuXKGWYk`;
  
     const response = await fetch(apiURL);
     const json = await response.json();
