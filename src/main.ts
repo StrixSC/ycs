@@ -1,11 +1,17 @@
 import VideoManager from './video-manager';
 import PopupRenderer from './popup-renderer';
 
-chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
-    const videoId = VideoManager.filterVideoId(tabs[0].url);
-    const comments = await VideoManager.getCommentsByVideoId(videoId);
+var videoId = null;
+
+document.querySelector('.submit-button').addEventListener('click', async () => {
+    let searchTerms = document.querySelector('input').value;
+    // TODO: Validate search terms;
+    const comments = await VideoManager.getCommentsByVideoId(videoId, searchTerms);
+    console.log(comments);
+
     if(comments) {
         const parentContainer = document.getElementById('comments-container');
+        parentContainer.innerHTML = '';
         for(let i = 0; i < comments.length; i++) {
             const rootComment = PopupRenderer.createRootContainer(comments[i], i);
             if(comments[i].replies) {
@@ -20,4 +26,8 @@ chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
             parentContainer.appendChild(rootComment);
         }
     }
+});
+
+chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
+    videoId = VideoManager.filterVideoId(tabs[0].url);
 });
