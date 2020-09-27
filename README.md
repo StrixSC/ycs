@@ -45,3 +45,6 @@ npm run build
 - [ ] Implement 'Load More Comments' feature
 - [ ] Implement Cloud Functions (*)
 - [ ] Implement checkboxes for filtering based on Relevance, Order, etc.
+- [ ] Cross-browser
+- [ ] Improve UI
+- [ ] Linting
