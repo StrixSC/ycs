@@ -1,6 +1,36 @@
 import VideoManager from './video-manager';
 import PopupRenderer from './popup-renderer';
 
+let videoId = null;
+let searchTerms = '';
+
+document.querySelector('.search-params-input').addEventListener('change', (event: InputEvent) => {
+    let target = event.target as HTMLInputElement;
+    searchTerms = target.value;
+    document.getElementById('comments-container').innerHTML = '';
+    PopupRenderer.hideLoadButton();
+});
+
+document.querySelector('.submit-button').addEventListener('click', async () => {
+    // TODO: Validate search terms;
+    console.log(searchTerms);
+    const comments = await VideoManager.getCommentsByVideoId(videoId, searchTerms);
+    const parentContainer = document.getElementById('comments-container');
+    parentContainer.innerHTML = '';
+    if(comments) {
+        PopupRenderer.generateCommentSection(comments);
+    }
+});
+
+document.querySelector('.load-more-button').addEventListener('click', async () => {
+    const comments = await VideoManager.loadMore(videoId, searchTerms);
+    if(comments) {
+        PopupRenderer.generateCommentSection(comments);
+    }
+})
+
+=======
+
 var videoId = null;
 
 document.querySelector('.submit-button').addEventListener('click', async () => {
@@ -26,8 +56,4 @@ document.querySelector('.submit-button').addEventListener('click', async () => {
             parentContainer.appendChild(rootComment);
         }
     }
-});
-
-chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
-    videoId = VideoManager.filterVideoId(tabs[0].url);
 });

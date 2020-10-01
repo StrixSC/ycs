@@ -40,9 +40,9 @@ npm run build
 - [X] Change to TypeScript
 - [X] Get videoId on popup
 - [X] Get comments for a single video
-- [ ] Display comments & replies on popup click 
-- [ ] Filter comments by user search param
-- [ ] Implement 'Load More Comments' feature
+- [X] Display comments & replies on popup click
+- [X] Filter comments by user search param
+- [X] Implement 'Load More Comments' feature
 - [ ] Implement Cloud Functions (*)
 - [ ] Implement checkboxes for filtering based on Relevance, Order, etc.
 - [ ] Cross-browser

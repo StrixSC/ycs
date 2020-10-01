@@ -1,4 +1,21 @@
-export default class PopupGenerator {
+export default class PopupRenderer {
+    public static generateCommentSection(comments: any[]) {
+        const parentContainer = document.getElementById('comments-container');
+        for(let i = 0; i < comments.length; i++) {
+            const rootComment = PopupRenderer.createRootContainer(comments[i], i);
+            if(comments[i].replies) {
+                const replyContainer = document.createElement('div');
+                replyContainer.className = 'reply-main-container';
+                for(let j = 0; j < comments[i].replies.length; j++) {
+                    replyContainer.appendChild(PopupRenderer.createChildContainer(comments[i].replies[j], j));
+                }
+                rootComment.appendChild(replyContainer);
+            }
+
+            parentContainer.appendChild(rootComment);
+        }
+    }
+
     public static createRootContainer(comment: any, index: number): Node {
         let newElement: HTMLDivElement = document.createElement('div');
         newElement.id = `${index}`;
@@ -60,4 +77,16 @@ export default class PopupGenerator {
     
         return newElement; 
     }
+
+
+    public static showLoadButton() {
+        const button = document.querySelector('.load-more-button') as HTMLButtonElement;
+        button.style.display = 'block';
+    }
+
+    public static hideLoadButton() {
+        const button = document.querySelector('.load-more-button') as HTMLButtonElement;
+        button.style.display = 'none';
+    }
+
 }
