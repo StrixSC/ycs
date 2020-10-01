@@ -2,6 +2,7 @@ export default class VideoManager {
   public static baseApiUrl = 'https://www.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies';
   public static maxResultsQuery = 'maxResults=100';
   public static orderQuery = 'order=relevance';
+  public static apiKey = '';
 
   public static filterVideoId = (url: string): string => {
     // example link: https://www.youtube.com/watch?v=R-R0KrXvWbc
@@ -11,8 +12,14 @@ export default class VideoManager {
     return '';
   };
 
-  public static getCommentsByVideoId = async (videoId: string): Promise<any[]> => {
-    const apiURL = `${VideoManager.baseApiUrl}&${VideoManager.maxResultsQuery}&${VideoManager.orderQuery}&videoId=${videoId}&key=#`;
+  public static getCommentsByVideoId = async (videoId: string, searchParam: string): Promise<any[]> => {
+    const apiURL = 
+    `${VideoManager.baseApiUrl}&` +
+    `${VideoManager.maxResultsQuery}&` +
+    `${VideoManager.orderQuery}&` + 
+    `searchTerms=${searchParam}&` + 
+    `videoId=${videoId}&` + 
+    `&key=${VideoManager.apiKey}`;
  
     const response = await fetch(apiURL);
     const json = await response.json();
@@ -27,4 +34,5 @@ export default class VideoManager {
       })) : null,
     })) : [];
   };
+
 }

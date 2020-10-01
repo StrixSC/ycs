@@ -4,7 +4,7 @@
   "description": "Web Extension for quickly searching through a YouTube video\\'s comments without needing to leave the video.",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --watch",
+    "build": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
