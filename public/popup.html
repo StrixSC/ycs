@@ -4,7 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YCS</title>
+    
 </head>
+<style>
+    body {
+        width: 1000px;
+        height: 1000px;
+        overflow-x: hidden;
+    }
+    
+    h1 {
+        padding-left: 1em;
+    }
+
+    #comments-container {
+        padding: 1em;
+    }
+
+    .root-comment-container {
+        display: flex;
+        gap: 1em;
+        border-bottom: 1px solid #eaeaea;
+        margin-bottom: 2em;
+        padding-bottom: 1em;
+    }
+
+    .root-comment-author {
+        padding: 1em;
+    }
+
+    .author-image {
+        border-radius: 50%;
+    }
+
+    .root-comment-author-name {
+        font-weight: bold;
+    }
+
+    .root-comment-text {
+        font-size: small;
+        font-weight: normal;
+        padding-top: 0.5em;
+        width: 500px;
+    }
+
+    .reply-comment-container {
+        display: flex;
+        gap: 1em;
+        margin: 1em;
+        width: 400px;
+    }
+    
+    .reply-main-container {
+        margin-left: 3em;
+        margin-bottom: 4em;
+    }
+
+</style>
+
 <body>
     <h1> YouTube Comment Scraper </h1>
     <div id="comments-container">
