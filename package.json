@@ -1,25 +1,31 @@
 {
-  "name": "ycs",
-  "version": "1.0.0",
-  "description": "Web Extension for quickly searching through a YouTube video\\'s comments without needing to leave the video.",
-  "main": "index.js",
-  "scripts": {
-    "build": "webpack -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@types/chrome": "0.0.124",
-    "@types/node": "^14.11.2",
-    "systemjs": "^6.6.1",
-    "ts-loader": "^8.0.4",
-    "tsc": "^1.20150623.0",
-    "tslib": "^2.0.1"
-  },
-  "devDependencies": {
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.3",
-    "webpack": "^4.44.2"
-  }
+    "name": "ycs",
+    "version": "1.0.0",
+    "description": "Web Extension for quickly searching through a YouTube video\\'s comments without needing to leave the video.",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack -w",
+        "lint": "npx eslint . --ext .ts",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@types/chrome": "0.0.124",
+        "@types/node": "^14.11.2",
+        "systemjs": "^6.6.1",
+        "ts-loader": "^8.0.4",
+        "tsc": "^1.20150623.0",
+        "tslib": "^2.0.1"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^4.3.0",
+        "@typescript-eslint/parser": "^4.3.0",
+        "eslint": "^7.10.0",
+        "prettier": "^2.1.2",
+        "ts-node": "^9.0.0",
+        "typescript": "^4.0.3",
+        "webpack": "^4.44.2",
+        "webpack-cli": "^3.3.12"
+    }
 }
