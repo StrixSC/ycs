@@ -40,10 +40,8 @@ export default class VideoManager {
                 `videoId=${videoId}&` +
                 `&key=${API_KEY}`;
 
-        console.log('api', API_KEY);
         const response = await fetch(apiURL);
         const json = await response.json();
-        console.log(json);
 
         if (json.nextPageToken) {
             nextPageToken = json.nextPageToken;
