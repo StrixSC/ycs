@@ -45,13 +45,13 @@ export default class VideoManager {
 
         if (json.nextPageToken) {
             nextPageToken = json.nextPageToken;
-            PopupRenderer.showLoadButton();
+            PopupRenderer.show('.load-more-button');
         } else {
             nextPageToken = '';
-            PopupRenderer.hideLoadButton();
+            PopupRenderer.hide('.load-more-button');
         }
 
-        if (!json) return [];
+        if (json.pageInfo.totalResults === 0) return [];
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return json.items.map((item: any) => ({

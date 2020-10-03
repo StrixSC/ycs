@@ -7,17 +7,26 @@ document.querySelector('.search-params-input').addEventListener('change', (event
     const target = event.target as HTMLInputElement;
     PopupRenderer.searchTerms = target.value;
     document.getElementById('comments-container').innerHTML = '';
-    PopupRenderer.hideLoadButton();
+    PopupRenderer.hide('.load-more-button');
 });
 
 document.querySelector('.submit-button').addEventListener('click', async () => {
     // TODO: Validate search terms;
-    const comments = await VideoManager.getCommentsByVideoId(videoId, PopupRenderer.searchTerms);
+    PopupRenderer.toggle('.spinner');
+    PopupRenderer.hide('.alert');
+
+    const comments = await VideoManager.getCommentsByVideoId(videoId, searchTerms);
     const parentContainer = document.getElementById('comments-container');
     parentContainer.innerHTML = '';
-    if (comments) {
-        PopupRenderer.generateCommentSection(comments);
+
+    if (comments.length === 0) {
+        PopupRenderer.show('.alert');
+        PopupRenderer.toggle('.spinner');
+        return;
     }
+
+    PopupRenderer.generateCommentSection(comments);
+    PopupRenderer.toggle('.spinner');
 });
 
 document.querySelector('.load-more-button').addEventListener('click', async () => {
