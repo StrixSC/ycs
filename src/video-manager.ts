@@ -40,20 +40,18 @@ export default class VideoManager {
                 `videoId=${videoId}&` +
                 `&key=${API_KEY}`;
 
-        console.log('api', API_KEY);
         const response = await fetch(apiURL);
         const json = await response.json();
-        console.log(json);
 
         if (json.nextPageToken) {
             nextPageToken = json.nextPageToken;
-            PopupRenderer.showLoadButton();
+            PopupRenderer.show('.load-more-button');
         } else {
             nextPageToken = '';
-            PopupRenderer.hideLoadButton();
+            PopupRenderer.hide('.load-more-button');
         }
 
-        if (!json) return [];
+        if (json.pageInfo.totalResults === 0) return [];
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return json.items.map((item: any) => ({

@@ -79,13 +79,19 @@ export default class PopupRenderer {
         return newElement;
     }
 
-    public static showLoadButton(): void {
-        const button = document.querySelector('.load-more-button') as HTMLButtonElement;
+    public static show(className: string): void {
+        const button = document.querySelector(`${className}`) as HTMLElement;
         button.style.display = 'block';
     }
 
-    public static hideLoadButton(): void {
-        const button = document.querySelector('.load-more-button') as HTMLButtonElement;
+    public static hide(className: string): void {
+        const button = document.querySelector(`${className}`) as HTMLElement;
         button.style.display = 'none';
+    }
+
+    public static toggle(className: string): void {
+        const spinner = document.querySelector(`${className}`) as HTMLElement;
+        const style = getComputedStyle(spinner);
+        spinner.style.display = style.display === 'none' ? 'block' : 'none';
     }
 }
