@@ -15,7 +15,7 @@ document.querySelector('.submit-button').addEventListener('click', async () => {
     PopupRenderer.toggle('.spinner');
     PopupRenderer.hide('.alert');
 
-    const comments = await VideoManager.getCommentsByVideoId(videoId, searchTerms);
+    const comments = await VideoManager.getCommentsByVideoId(videoId, PopupRenderer.searchTerms);
     const parentContainer = document.getElementById('comments-container');
     parentContainer.innerHTML = '';
 
