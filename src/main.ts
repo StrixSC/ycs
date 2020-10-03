@@ -1,8 +1,8 @@
 import VideoManager from './video-manager';
 import PopupRenderer from './popup-renderer';
 
-let videoId = null;
 let searchTerms = '';
+var videoId = null;
 
 document.querySelector('.search-params-input').addEventListener('change', (event: InputEvent) => {
     let target = event.target as HTMLInputElement;
@@ -28,10 +28,6 @@ document.querySelector('.load-more-button').addEventListener('click', async () =
         PopupRenderer.generateCommentSection(comments);
     }
 })
-
-=======
-
-var videoId = null;
 
 document.querySelector('.submit-button').addEventListener('click', async () => {
     let searchTerms = document.querySelector('input').value;
