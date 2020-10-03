@@ -78,6 +78,7 @@ export default class PopupRenderer {
         return newElement; 
     }
 
+
     public static showLoadButton() {
         const button = document.querySelector('.load-more-button') as HTMLButtonElement;
         button.style.display = 'block';
@@ -87,4 +88,5 @@ export default class PopupRenderer {
         const button = document.querySelector('.load-more-button') as HTMLButtonElement;
         button.style.display = 'none';
     }
+
 }

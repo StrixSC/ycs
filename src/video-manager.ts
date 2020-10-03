@@ -22,7 +22,7 @@ export default class VideoManager {
     `${VideoManager.orderQuery}&` + 
     `searchTerms=${searchParam}&` + 
     `videoId=${videoId}&` + 
-    `&key=${VideoManager.apiKey}`;
+    `key=${VideoManager.apiKey}`;
  
     const response = await fetch(apiURL);
     const json = await response.json();

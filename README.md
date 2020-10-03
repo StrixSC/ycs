@@ -23,28 +23,16 @@ Using the YouTube API, it\'s possible to get a list of the comments for a specif
 6. (Optional) Pin the extension onto your searchbar for ease of access
 
 The extension should reload automatically if the files have been changed locally.
+
 ## Project setup
 ```
 npm install
-```
-
-```
-npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 
 
 ### Todo
@@ -54,6 +42,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [X] Get comments for a single video
 - [X] Display comments & replies on popup click
 - [X] Filter comments by user search param
-- [ ] Implement 'Load More Comments' feature
+- [X] Implement 'Load More Comments' feature
 - [ ] Implement Cloud Functions (*)
 - [ ] Implement checkboxes for filtering based on Relevance, Order, etc.
+- [ ] Cross-browser
+- [ ] Improve UI
+- [ ] Linting
