@@ -1,5 +1,7 @@
 import { CommentThread, Comment } from './video-manager';
 export default class PopupRenderer {
+    public static searchTerms: string;
+
     public static generateCommentSection(comments: CommentThread[]): void {
         const parentContainer = document.getElementById('comments-container');
         for (let i = 0; i < comments.length; i++) {
@@ -32,7 +34,7 @@ export default class PopupRenderer {
 
         const rootCommentText: HTMLDivElement = document.createElement('div');
         rootCommentText.className = 'root-comment-text';
-        rootCommentText.innerHTML = comment.comment;
+        rootCommentText.innerHTML = this.boldMatch(comment.comment);
         rootCommentAuthor.appendChild(rootCommentText);
 
         const rootCommentAuthorImageContainer: HTMLDivElement = document.createElement('div');
@@ -63,7 +65,7 @@ export default class PopupRenderer {
 
         const replyCommentText: HTMLDivElement = document.createElement('div');
         replyCommentText.className = 'reply-comment-text';
-        replyCommentText.innerHTML = reply.comment;
+        replyCommentText.innerHTML = this.boldMatch(reply.comment);
         replyCommentAuthor.appendChild(replyCommentText);
 
         const replyCommentAuthorImageContainer: HTMLDivElement = document.createElement('div');
@@ -93,5 +95,6 @@ export default class PopupRenderer {
         const spinner = document.querySelector(`${className}`) as HTMLElement;
         const style = getComputedStyle(spinner);
         spinner.style.display = style.display === 'none' ? 'block' : 'none';
+
     }
 }

@@ -1,12 +1,11 @@
 import VideoManager from './video-manager';
 import PopupRenderer from './popup-renderer';
 
-let searchTerms = '';
 let videoId = null;
 
 document.querySelector('.search-params-input').addEventListener('change', (event: InputEvent) => {
     const target = event.target as HTMLInputElement;
-    searchTerms = target.value;
+    PopupRenderer.searchTerms = target.value;
     document.getElementById('comments-container').innerHTML = '';
     PopupRenderer.hide('.load-more-button');
 });
@@ -31,7 +30,7 @@ document.querySelector('.submit-button').addEventListener('click', async () => {
 });
 
 document.querySelector('.load-more-button').addEventListener('click', async () => {
-    const comments = await VideoManager.loadMore(videoId, searchTerms);
+    const comments = await VideoManager.loadMore(videoId, PopupRenderer.searchTerms);
     if (comments) {
         PopupRenderer.generateCommentSection(comments);
     }
