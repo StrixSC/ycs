@@ -1,11 +1,11 @@
 import VideoManager from './video-manager';
 import PopupRenderer from './popup-renderer';
 
-let videoId = null;
 let searchTerms = '';
+let videoId = null;
 
 document.querySelector('.search-params-input').addEventListener('change', (event: InputEvent) => {
-    let target = event.target as HTMLInputElement;
+    const target = event.target as HTMLInputElement;
     searchTerms = target.value;
     document.getElementById('comments-container').innerHTML = '';
     PopupRenderer.hideLoadButton();
@@ -13,18 +13,17 @@ document.querySelector('.search-params-input').addEventListener('change', (event
 
 document.querySelector('.submit-button').addEventListener('click', async () => {
     // TODO: Validate search terms;
-    console.log(searchTerms);
     const comments = await VideoManager.getCommentsByVideoId(videoId, searchTerms);
     const parentContainer = document.getElementById('comments-container');
     parentContainer.innerHTML = '';
-    if(comments) {
+    if (comments) {
         PopupRenderer.generateCommentSection(comments);
     }
 });
 
 document.querySelector('.load-more-button').addEventListener('click', async () => {
     const comments = await VideoManager.loadMore(videoId, searchTerms);
-    if(comments) {
+    if (comments) {
         PopupRenderer.generateCommentSection(comments);
     }
 })
