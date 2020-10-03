@@ -81,6 +81,11 @@ export default class PopupRenderer {
         return newElement;
     }
 
+    private static boldMatch(comment: string): string {
+        comment = comment.replace(new RegExp(`(${PopupRenderer.searchTerms})`, 'gmi'), '<b>$1</b>');
+        return comment;
+    }
+
     public static show(className: string): void {
         const button = document.querySelector(`${className}`) as HTMLElement;
         button.style.display = 'block';
@@ -95,6 +100,5 @@ export default class PopupRenderer {
         const spinner = document.querySelector(`${className}`) as HTMLElement;
         const style = getComputedStyle(spinner);
         spinner.style.display = style.display === 'none' ? 'block' : 'none';
-
     }
 }
