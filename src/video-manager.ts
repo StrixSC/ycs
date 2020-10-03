@@ -1,5 +1,7 @@
 import PopupRenderer from './popup-renderer';
 
+const API_KEY = process.env.API ?? '';
+
 export interface CommentThread {
     rootAuthorName: string;
     rootAuthorImage: string;
@@ -19,7 +21,6 @@ export default class VideoManager {
     public static baseApiUrl = 'https://www.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies';
     public static maxResultsQuery = 'maxResults=80';
     public static orderQuery = 'order=relevance';
-    public static apiKey = 'AIzaSyBKy-9ns1O3Nj8c-TTQO42YRbzUen5sJtM';
 
     public static filterVideoId = (url: string): string => {
         // example link: https://www.youtube.com/watch?v=R-R0KrXvWbc
@@ -37,8 +38,9 @@ export default class VideoManager {
                 `${VideoManager.orderQuery}&` +
                 `searchTerms=${searchParam}&` +
                 `videoId=${videoId}&` +
-                `&key=${VideoManager.apiKey}`;
+                `&key=${API_KEY}`;
 
+        console.log('api', API_KEY);
         const response = await fetch(apiURL);
         const json = await response.json();
         console.log(json);
@@ -53,12 +55,14 @@ export default class VideoManager {
 
         if (!json) return [];
 
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return json.items.map((item: any) => ({
             rootAuthorName: item.snippet.topLevelComment.snippet.authorDisplayName,
             rootAuthorImage: item.snippet.topLevelComment.snippet.authorProfileImageUrl,
             comment: item.snippet.topLevelComment.snippet.textDisplay,
             replies: item.replies
-                ? item.replies.comments.map((comment: any) => ({
+                ? //eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  item.replies.comments.map((comment: any) => ({
                       authorName: comment.snippet.authorDisplayName,
                       authorImage: comment.snippet.authorProfileImageUrl,
                       comment: comment.snippet.textDisplay,
@@ -76,7 +80,7 @@ export default class VideoManager {
                 `searchTerms=${searchParam}&` +
                 `pageToken=${nextPageToken}&` +
                 `videoId=${videoId}&` +
-                `key=${VideoManager.apiKey}`;
+                `key=${API_KEY}`;
             return VideoManager.getCommentsByVideoId(videoId, searchParam, apiURL);
         }
     };
